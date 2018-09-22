@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Medicine page</h1>
+	{% for medicine in all_medicine %}
+		<h3><a href="{% url 'packet' medicine.id %}">{{medicine.name}}</a></h3>
+	{% endfor %}
+</body>
+</html>

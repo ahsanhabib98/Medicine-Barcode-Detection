@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Company list page</h1>
+	{% for company in all_company %}
+		<h3><a href="{% url 'medicine' company.id %}">{{company.name}}</a></h3>
+	{% endfor %}
+</body>
+</html>

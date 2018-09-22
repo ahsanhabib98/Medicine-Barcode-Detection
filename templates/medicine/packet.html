@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Packet page</h1>
+	{% for packet in all_packet %}
+		<h3><a href="{% url 'barcode' packet.id %}">{{packet.title}}</a></h3>
+	{% endfor %}
+</body>
+</html>
