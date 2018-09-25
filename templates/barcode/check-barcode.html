@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+    <form class="form text-center mt-4" action="{% url 'checkbarcode' %}" method="POST">
+      {% csrf_token %}
+      <div class="input-group">
+        <span><i class="fa fa-user"></i></span>
+        <input name="barcode" type="text" class="form-control" placeholder="Enter Barcode">
+      </div>
+      <button class="btn btn-primary btn-sm mt-2">Submit</button>
+    </form>
+
+    {% if barcode %}
+        <h1>Scanning Succesfully</h1>
+        <h2>{{barcode.title}}</h2>
+        <h3>{{barcode.packet.manufacturing_date}}</h3>
+        <h3>{{barcode.packet.expiring_date}}</h3>
+    {% elif errmsg %}
+        <h1>{{errmsg}}</h1>
+    {% endif %}   
+
+</body>
+</html>

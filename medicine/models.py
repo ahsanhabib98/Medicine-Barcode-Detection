@@ -15,7 +15,6 @@ class Company(models.Model):
 
 class Medicine(models.Model):
 	name 				= models.CharField(max_length=100)
-	medicine_id 		= models.PositiveIntegerField(validators=[MinValueValidator(1)], unique=True)
 	company 			= models.ForeignKey(Company, on_delete=models.CASCADE)
 
 	def __str__(self):
@@ -24,8 +23,10 @@ class Medicine(models.Model):
 
 class MedicinePacket(models.Model):
 	title 				= models.CharField(max_length=100, null=True, blank=True)
-	packet_id 			= models.PositiveIntegerField(validators=[MinValueValidator(1)], unique=True)
+	packet_id 			= models.PositiveIntegerField(validators=[MinValueValidator(1)])
 	medicine 			= models.ForeignKey(Medicine, on_delete=models.CASCADE)
+	manufacturing_date  = models.DateField(null=True, blank=True)
+	expiring_date 		= models.DateField(null=True, blank=True)    
 
 	def __str__(self):
 		return self.title

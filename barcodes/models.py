@@ -22,15 +22,17 @@ class BarcodeRead(models.Model):
 	scanning_id 		= models.IntegerField(default=0)
 
 	def __str__(self):
-		return "Barcode of " + str(self.packet.packet_id) + " no. packet (" + self.packet.medicine.name + ") is " + self.barcode
+		return self.title
 
 
 def pre_save_receiver(sender, instance, *args, **kwargs):
+    if instance.scanning == True:
+        instance.scanning_id = 1
     if instance.company_id or not instance.company_id:
         instance.company_id = instance.packet.medicine.company.company_id
 
     if not instance.title or instance.title:
-        instance.title = "Barcode of " + str(instance.packet.packet_id) + " no. packet (" + instance.packet.medicine.name + ") is " + str(instance.barcode)
+        instance.title = "Barcode of " + instance.packet.title + " is " + str(instance.barcode)
     
     temp = ""
     if not instance.barcode or instance.barcode:
